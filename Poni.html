@@ -1,0 +1,49 @@
+<!Doctype html>
+<html>
+<head>
+    <title>Poni Modul</title>
+</head>    
+<body>
+<script>
+	
+var Pony = (function () {
+
+    function Constructor () {
+	
+	    var privateValue={};
+		    		
+		this.set = function (key, value) {
+		    privateValue[key] = value;
+	    };
+		
+		this.get = function () {
+		   return privateValue;
+		};
+		
+		return this;
+	}
+
+	Constructor.prototype.gallop = function () {
+	    console.log("Pony run run run!");
+	};
+	
+	Constructor.prototype.sayJoke = function () {  
+	    console.log("Pony said:'Igogo igogo, puk....OGO !'");
+	};
+	
+    return Constructor;
+})();
+
+var littlePony = new Pony();
+
+littlePony.set("hight", "140sm");
+
+console.log(littlePony.get());
+
+littlePony.gallop();
+
+littlePony.sayJoke();
+</script>
+
+</body>
+</html>
