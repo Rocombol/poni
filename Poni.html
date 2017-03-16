@@ -5,11 +5,18 @@
 </head>    
 <body>
 <script>
+var Animal = (function () {
+    function C () {
+	this.get = function (){};
+	}
+	C.prototype.fly = function () {  
+	    console.log('Now I can Fly!');
+	};
 	
+    return C;
+})();	
 var Pony = (function () {
-
     function Constructor () {
-	
 	    var privateValue={};
 		    		
 		this.set = function (key, value) {
@@ -22,7 +29,8 @@ var Pony = (function () {
 		
 		return this;
 	}
-
+	extend(Constructor, Animal);
+	
 	Constructor.prototype.gallop = function () {
 	    console.log("Pony run run run!");
 	};
@@ -36,14 +44,21 @@ var Pony = (function () {
 
 var littlePony = new Pony();
 
+console.dir(littlePony);
+
 littlePony.set("hight", "140sm");
 
-console.log(littlePony.get());
-
 littlePony.gallop();
-
 littlePony.sayJoke();
-</script>
 
+littlePony.fly();
+
+
+function extend (Child,Parent){
+	function Surrogate(){}
+	Surrogate.prototype = Parent.prototype;
+	Child.prototype = new Surrogate();
+}
+</script>
 </body>
 </html>
